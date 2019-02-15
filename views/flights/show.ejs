@@ -1,19 +1,37 @@
 <%- include('../partials/header'); %>
-
 <h3><%= flight.airline %> Flight <%= flight.flightNo %></h3><br><br>
 <h4>Departure:</h4><br>
 <h6>Airport: <%= flight.airport %></h6>
 <h6>Departure Date/Time: <%= flight.departs %></h6>
 
+
 <% if (flight.destinations[0]) { %>
-  <br><h4>Destinations:</h4><br>
+<% flight.destinations.sort(function(a, b){ %>
+<% return a.arrival - b.arrival; %>
+<% }); %>
+
+<br>
+<h4>Destinations:</h4><br>
 <% flight.destinations.forEach(function(destination){ %>
-<h6>Airport: <%= destination.airport %></h6>
-<h6>Arrival Date/Time: <%= destination.arrival %></h6><br>
+  <h6>Airport: <%= destination.airport %></h6>
+  <h6>Arrival Date/Time: <%= destination.arrival %></h6><br>
 <% }); %>
 <% } %>
 
+<% if(flight.destinations.length < 3) { %>
 <br>
+
+<% let AUS = true %>
+<% let DAL = true %>
+<% let LAX = true %>
+<% let SEA = true %>
+<% flight.destinations.forEach(function(d) { %>
+<%  if (d.airport === 'AUS') AUS = false; %>
+<%  if (d.airport === 'DAL') DAL = false; %>
+<%  if (d.airport === 'LAX') LAX = false; %>
+<%  if (d.airport === 'SEA') SEA = false; %>
+<% }); %>
+
 <h4>Add A Destination</h4>
 <form action="/flights/<%= flight._id %>/destinations" method="POST">
   <label>Destination Time:
@@ -22,13 +40,21 @@
   <br>
   <label>Destination Airport:
     <select name="airport">
+      <% if (flight.airport !== 'AUS' && AUS === true) { %>
       <option value="AUS">AUS</option>
+      <% } %>
+      <% if (flight.airport !== 'DAL' && DAL === true) { %>
       <option value="DAL">DAL</option>
+      <% } %>
+      <% if (flight.airport !== 'LAX' && LAX === true) { %>
       <option value="LAX">LAX</option>
+      <% } %>
+      <% if (flight.airport !== 'SEA' && SEA === true) { %>
       <option value="SEA">SEA</option>
+      <% } %>
     </select>
   </label>
   <input type="submit" value="Submit">
 </form>
-
+<% } %>
 <%- include('../partials/footer'); %>
