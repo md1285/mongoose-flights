@@ -2,7 +2,7 @@
 <h3><%= flight.airline %> Flight <%= flight.flightNo %></h3><br><br>
 <h4>Departure:</h4><br>
 <h6>Airport: <%= flight.airport %></h6>
-<h6>Departure Date/Time: <%= flight.departs %></h6>
+<h6>Departure Date/Time: <%= flight.departs.toLocaleDateString() + ' ' + flight.departs.toLocaleTimeString() %></h6>
 
 
 <% if (flight.destinations[0]) { %>
@@ -14,7 +14,7 @@
 <h4>Destinations:</h4><br>
 <% flight.destinations.forEach(function(destination){ %>
   <h6>Airport: <%= destination.airport %></h6>
-  <h6>Arrival Date/Time: <%= destination.arrival %></h6><br>
+  <h6>Arrival Date/Time: <%= destination.arrival.toLocaleDateString() + ' ' + destination.arrival.toLocaleTimeString() %></h6><br>
 <% }); %>
 <% } %>
 
@@ -57,4 +57,23 @@
   <input type="submit" value="Submit">
 </form>
 <% } %>
+<h4>Tickets:</h4>
+<table>
+  <tr>
+    <td>
+      Ticket 1
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Ticket 2
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Ticket 3
+    </td>
+  </tr>
+</table><br>
+<a href="/flights/<%= flight._id %>/tickets/new">New Ticket</a>
 <%- include('../partials/footer'); %>
