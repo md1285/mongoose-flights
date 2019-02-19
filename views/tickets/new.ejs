@@ -1,13 +1,10 @@
 <%- include('../partials/header'); %>
 <h2>New Ticket for <%= flight.airline %> Flight <%= flight.flightNo %></h2><br>
-<!-- <h3><%= flight._id %></h3>
-<h2><%= typeof(flight._id) %></h2> -->
 <form action="/flights/<%= flight._id %>/tickets" method="POST">
     <label>Seat Number:</label>
-    <input type="text" name="seat">
+    <input type="text" name="seat" pattern="[A-F][1-9]\d?" required>
     <label>Price:</label>
-    <input type="number" name="price"><br>
+    <input type="number" name="price" required><br>
     <input type="submit">
-    <!-- On submit, seat and price live on the body of the request, with those names. the flight id lives on the req.params.id, that needs to be passed into the "flight" key in the controller -->
 </form>
 <%- include('../partials/footer'); %>

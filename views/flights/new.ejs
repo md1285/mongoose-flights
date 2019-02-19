@@ -2,13 +2,13 @@
     <h2>Enter a New Flight</h2>
     <form action="/flights" method="POST">
       <label>Airline:
-          <input type="text" name="airline">
+          <input type="text" name="airline" required>
         </label><br>
       <label>Flight Number:
-          <input type="text" name="flightNo">
+          <input type="text" name="flightNo" required>
       </label><br>
       <label>Departure Date:
-          <input type="datetime-local" name="departs">
+          <input type="datetime-local" name="departs" required>
       </label><br>
       <label>Departure Airport:
           <select name="airport">

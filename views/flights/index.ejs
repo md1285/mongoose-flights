@@ -4,8 +4,8 @@
   <th>
     <tr>
       <th class="center">Airline</td>
-      <th class="flight-no">Flight No.</td>
-      <th>Departure Date</td>
+      <th class="flight-no">Flight Number</td>
+      <th>Departure Date/Time</td>
       <th class="center">More Info</td>
     </tr>
   </th>
@@ -18,10 +18,10 @@
       <%= flight.flightNo %>
     </td>
     <td>
-      <%= flight.departs %>
+      <%= flight.departs.toDateString() + ' ' + flight.departs.toLocaleTimeString(); %>
     </td>
     <td class="center">
-      <a href="/flights/<%= flight._id %>">Details</a>
+      <a href="/flights/<%= flight._id %>" class="btn btn-primary">Details</a>
     </td>
   </tr>
   <% }); %>

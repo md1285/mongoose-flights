@@ -14,7 +14,8 @@ nav {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
+  position: fixed;
 }
 
 nav a {
@@ -24,7 +25,7 @@ nav a {
 }
 
 main {
-  padding : 50px;
+  padding: 100px 50px 50px 50px;
 }
 
 a {
@@ -55,4 +56,8 @@ td {
 
 .center {
   text-align: center;
+}
+
+.tickets-table {
+  width: 50%;
 }
