@@ -14,8 +14,9 @@ function newTicket(req, res) {
 }
 function deleteTicket(req, res) {
     Ticket.deleteOne({_id: req.params.id}, function(err){
-        if (err){
+        if (err){ 
             console.log(err);
+            res.redirect(`back`);
         }
         res.redirect(`back`);
     })

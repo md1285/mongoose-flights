@@ -28,11 +28,11 @@ function newFlight(req, res){
 }
 
 function create(req, res){
-    req.body.flightNo = parseInt(req.body.flightNo);
+    // req.body.flightNo = parseInt(req.body.flightNo);
     if (!req.body.departs) delete req.body.departs;
     let flight = new Flight(req.body);
     flight.save(function(err){
-        if (err) return res.render('flights/new');
+        if (err) return res.redirect('back');
         console.log(flight);
         res.redirect('/flights/');
     });
